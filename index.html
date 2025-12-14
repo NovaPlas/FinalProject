@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Map Quiz</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="container">
+      <div id="sidebar">
+        <h1>Map Quiz. Please double click on the map the location of:</h1>
+        <div id="prompt"></div>
+        <ul id="questions">
+          <li id="q-0" class="question">Where is the BookStore??</li>
+          <div id="fb-0" class="feedback"></div>
+          <li id="q-1" class="question">Where is Bayramian Hall</li>
+          <div id="fb-1" class="feedback"></div>
+          <li id="q-2" class="question">Where is Jacaranda Hall</li>
+          <div id="fb-2" class="feedback"></div>
+          <li id="q-3" class="question">Where is Matadome</li>
+          <div id="fb-3" class="feedback"></div>
+          <li id="q-4" class="question">Where is Outdoor Adventures</li>
+          <div id="fb-4" class="feedback"></div>
+        </ul>
+
+        <div id="score"></div>
+      </div>
+
+      <div id="map"></div>
+    </div>
+
+    <!-- Your quiz logic -->
+    <script src="quiz.js"></script>
+
+    <!-- Google Maps JS API (replace YOUR_API_KEY_HERE with your key) -->
+    <script
+       src="https://maps.googleapis.com/maps/api/js?key=__MAPS_API_KEY__&callback=initMap"
+
+    ></script>
+  </body>
+</html>

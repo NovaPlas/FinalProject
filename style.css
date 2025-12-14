@@ -1,0 +1,97 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: "Times New Roman", Times, serif;
+  text-align: center;
+}
+
+/* Layout: left = sidebar, right = map */
+#container {
+  display: flex;
+  height: 100%;
+  background-color: #e5d7b5; /* beige like your screenshot */
+}
+
+/* Left side */
+#sidebar {
+  width: 35%;
+  padding: 20px;
+}
+
+#sidebar h1 {
+  font-size: 20px;
+  margin-top: 0;
+}
+
+#questions {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+
+#questions li {
+  background: #326696;
+  color: white;
+  margin-bottom: 4px;
+  padding: 4px 6px;
+  cursor: default;
+  text-align: center;
+}
+
+/* Current question highlight */
+#questions li.active {
+  background: #00aa00;
+  color: #ffffff;
+  text-align: center;
+}
+
+/* After answer, show text in green or red */
+#questions li.correct {
+  color: #00aa00;
+  font-style: italic;
+  text-align: center;
+}
+
+#questions li.incorrect {
+  color: #aa0000;
+  font-style: italic;
+  text-align: center;
+}
+
+/* Score text */
+#score {
+  margin-top: 20px;
+  font-size: 40px;
+  font-weight: bold;
+}
+
+/* Current question prompt */
+#prompt {
+  margin: 10px 0 16px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/* Per-question feedback outside the blue boxes */
+.feedback {
+  margin: 4px 0 16px;
+  font-size: 18px;
+  color: #000;
+}
+
+.feedback.correct {
+  color: #00aa00;
+}
+
+.feedback.incorrect {
+  color: #aa0000;
+}
+
+/* Right side map */
+#map {
+  flex: 1;
+  height: 100%;
+}
