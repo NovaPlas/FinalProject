@@ -24,7 +24,7 @@ jobs:
       # Replace the placeholder __MAPS_API_KEY__ with the real secret
       - name: Inject Google Maps API key
         env:
-          MAPS_API_KEY: ${{ secrets.API_KEY }}
+          MAPS_API_KEY: ${{ secrets.SET }}
         run: |
           mkdir dist
           sed "s|__MAPS_API_KEY__|$MAPS_API_KEY|g" index.template.html > dist/index.html
