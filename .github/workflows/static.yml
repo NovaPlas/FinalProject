@@ -25,12 +25,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
+        
       - name: Inject Google Maps API key
         env:
-          MAPS_API_KEY: ${{ secrets.SET }}   # or secrets.SET if that's the name you used
+          MAPS_API_KEY: ${{ secrets.API_KEY }}   # or secrets.SET if that's what you created
         run: |
-          sed "s|__MAPS_API_KEY__|$MAPS_API_KEY|g" index.template.html > index.html
+          sed -i "s|__MAPS_API_KEY__|$MAPS_API_KEY|g" index.html
+
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
