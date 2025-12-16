@@ -95,3 +95,18 @@ body {
   flex: 1;
   height: 100%;
 }
+
+/* Score text */
+#score {
+  margin-top: 20px;
+  font-size: 40px;
+  font-weight: bold;
+}
+
+/* Timer and high score */
+#timer,
+#high-score {
+  margin-top: 6px;
+  font-size: 18px;
+  font-weight: bold;
+}

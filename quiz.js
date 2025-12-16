@@ -9,6 +9,11 @@ let finalPopupShown = false;
 let outdoorMarker;
 let outdoorInfoWindow;
 
+const HIGH_SCORE_KEY = "mapQuizBestTime";
+let startTime = null;
+let timerInterval = null;
+let bestTime = null;
+
 // Define your quiz locations here
 // Replace these bounds with the real rectangles for your campus
 const quizLocations = [
@@ -63,6 +68,17 @@ const quizLocations = [
 function initMap() {
   // Center the map roughly on campus (replace with your own center)
   const center = { lat: 34.2402, lng: -118.5283 };
+
+  // Start timer when the quiz begins
+startTime = performance.now();
+timerInterval = setInterval(updateTimer, 100);
+
+// Load high score from localStorage (if any)
+const stored = localStorage.getItem(HIGH_SCORE_KEY);
+if (stored) {
+  bestTime = parseFloat(stored);
+}
+updateHighScoreDisplay();
 
   map = new google.maps.Map(document.getElementById("map"), {
     zoom: 17,
@@ -128,7 +144,6 @@ function initMap() {
     handleAnswer(e.latLng);
   });
 
-  //added rectangle zoom to be able to zoom on the board:
   // Keyboard '+' zoom-in handler
   if (!keydownHandlerAttached) {
     window.addEventListener("keydown", (ev) => {
@@ -245,7 +260,7 @@ function updateScore() {
         map,
         title: last.name,
       });
-//To Show one of the elements i need called the InfoWindow:
+
       const contentHtml = `<div>
   <h1 style="margin:0 0 6px 0;">${last.name}</h1>
   <div>This is the Outdoor Adventures! This place is not well known on campus. You can get 
@@ -265,6 +280,39 @@ function updateScore() {
       finalPopupShown = true;
     }
   }
+
+
+  if (currentQuestion === quizLocations.length) {
+  // Stop timer
+  if (timerInterval) {
+    clearInterval(timerInterval);
+    timerInterval = null;
+  }
+
+  let finalTimeSeconds = 0;
+  if (startTime != null) {
+    finalTimeSeconds = (performance.now() - startTime) / 1000;
+  }
+
+  const timerEl = document.getElementById("timer");
+  if (timerEl) {
+    timerEl.textContent = `Final Time: ${finalTimeSeconds.toFixed(1)} seconds`;
+  }
+
+  // Update high score
+  tryUpdateHighScore(finalTimeSeconds);
+}
+
+}
+
+function updateTimer() {
+  if (!startTime) return;
+  const now = performance.now();
+  const elapsedSeconds = (now - startTime) / 1000;
+  const timerEl = document.getElementById("timer");
+  if (timerEl) {
+    timerEl.textContent = `Time: ${elapsedSeconds.toFixed(1)} seconds`;
+  }
 }
 
 function showCurrentQuestionPopup() {
@@ -277,6 +325,37 @@ function showCurrentQuestionPopup() {
     promptEl.textContent = "Quiz complete!";
   }
 }
+
+function updateHighScoreDisplay() {
+  const hsEl = document.getElementById("high-score");
+  if (!hsEl) return;
+
+  if (bestTime == null) {
+    hsEl.textContent = "High Score: --";
+  } else {
+    hsEl.textContent = `High Score (all correct): ${bestTime.toFixed(1)} seconds`;
+  }
+}
+
+function tryUpdateHighScore(elapsedSeconds) {
+  const hsEl = document.getElementById("high-score");
+  if (incorrectCount > 0) {
+    // Only record high scores when all answers are correct
+    if (hsEl) {
+      hsEl.textContent =
+        "High Score: only recorded when all answers are correct.";
+    }
+    return;
+  }
+
+  if (bestTime == null || elapsedSeconds < bestTime) {
+    bestTime = elapsedSeconds;
+    localStorage.setItem(HIGH_SCORE_KEY, bestTime.toString());
+  }
+
+  updateHighScoreDisplay();
+}
+
 
 // Expose initMap globally for the callback
 window.initMap = initMap;
