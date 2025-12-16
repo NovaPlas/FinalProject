@@ -108,7 +108,8 @@ updateHighScoreDisplay();
       { featureType: "poi", stylers: [{ visibility: "on" }] },
       { featureType: "transit", stylers: [{ visibility: "on" }] },
       { featureType: "road", stylers: [{ visibility: "on" }] },
-      { featureType: "administrative", stylers: [{ visibility: "on" }] }
+      { featureType: "administrative", stylers: [{ visibility: "on" }] },
+      { elementType: "labels.icon", stylers: [{ visibility: "off"}] }
     ],
   });
 
