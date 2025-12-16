@@ -128,6 +128,7 @@ function initMap() {
     handleAnswer(e.latLng);
   });
 
+  //added rectangle zoom to be able to zoom on the board:
   // Keyboard '+' zoom-in handler
   if (!keydownHandlerAttached) {
     window.addEventListener("keydown", (ev) => {
