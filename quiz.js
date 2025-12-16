@@ -109,7 +109,8 @@ updateHighScoreDisplay();
       { featureType: "transit", stylers: [{ visibility: "on" }] },
       { featureType: "road", stylers: [{ visibility: "on" }] },
       { featureType: "administrative", stylers: [{ visibility: "on" }] },
-      { elementType: "labels.icon", stylers: [{ visibility: "off"}] }
+      { elementType: "labels.icon", stylers: [{ visibility: "off"}] },
+      { featureType: "road.local", stylers: [{ visibility: "off" }] }
     ],
   });
 
