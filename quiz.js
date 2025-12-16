@@ -144,6 +144,7 @@ updateHighScoreDisplay();
     handleAnswer(e.latLng);
   });
 
+  //REQUIREMENT FOR RECTANGLE ZOOM
   // Keyboard '+' zoom-in handler
   if (!keydownHandlerAttached) {
     window.addEventListener("keydown", (ev) => {
@@ -260,7 +261,7 @@ function updateScore() {
         map,
         title: last.name,
       });
-
+//Requirment INFO WINDOW
       const contentHtml = `<div>
   <h1 style="margin:0 0 6px 0;">${last.name}</h1>
   <div>This is the Outdoor Adventures! This place is not well known on campus. You can get 
