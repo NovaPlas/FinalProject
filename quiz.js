@@ -244,7 +244,7 @@ function updateScore() {
         map,
         title: last.name,
       });
-
+//To Show one of the elements i need called the InfoWindow:
       const contentHtml = `<div>
   <h1 style="margin:0 0 6px 0;">${last.name}</h1>
   <div>This is the Outdoor Adventures! This place is not well known on campus. You can get 
