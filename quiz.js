@@ -105,7 +105,7 @@ updateHighScoreDisplay();
     // Hide labels, icons, POIs, roads, transit, admin layers
     styles: [
       { elementType: "labels.text", stylers: [{ visibility: "off" }] },
-      { featureType: "poi", stylers: [{ visibility: "on" }] },
+      { featureType: "poi", stylers: [{ visibility: "off" }] },
       { featureType: "transit", stylers: [{ visibility: "on" }] },
       { featureType: "road", stylers: [{ visibility: "on" }] },
       { featureType: "administrative", stylers: [{ visibility: "on" }] },
